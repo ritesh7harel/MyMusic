@@ -6,14 +6,22 @@ export const CardContainer = styled.div`
     height: auto;
     width: 180px;
     font-size: 14px;
-    cursor: pointer;
+    
+    :hover{
+        transform: scale(1.02);
+    }
 `;
 
 export const Image = styled.img`
     border-radius: 5px;
+`
+
+export const ImageNavigator = styled.a`
+    cursor: pointer;
 `;
 
 export const Title = styled.a`
+    cursor: pointer;
     padding: 5px 0;
     color: white;
     text-decoration: none;
@@ -24,10 +32,10 @@ export const Title = styled.a`
     :hover{
       text-decoration: underline;
     }
-
 `;
 
 export const Artist = styled.a`
+    cursor: pointer;
     color: #999999;
     text-decoration: none;
     :visited, :hover, :active {

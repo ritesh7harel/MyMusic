@@ -1,10 +1,12 @@
 import React from "react";
-import {CardContainer, Image, Title, Artist} from "./Card.style";
+import {CardContainer, Image, Title, Artist, ImageNavigator} from "./Card.style";
 
 const Card = ({album}) => {
     return (
         <CardContainer>
-            <Image src={album["im:image"][2].label} alt="album image"/>
+            <ImageNavigator href={album.link.attributes.href}>
+                <Image src={album["im:image"][2].label} alt="album image"/>
+            </ImageNavigator>
             <Title className="title" href={album.id.label}>
                 {album["im:name"].label}
             </Title>
