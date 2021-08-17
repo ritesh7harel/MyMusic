@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 import API from "../../util/api";
 import {GET_ALBUMS_URL} from '../../util/constants';
-import Card from "../common/Card";
+import AlbumList from "../AlbumList/AlbumList";
+import {Main} from "./Home.style";
 
-const Albums = () => {
+const Home = () => {
     const [albums, setAlbums] = useState([]);
 
     const fetchAlbums = () => {
@@ -20,11 +21,11 @@ const Albums = () => {
     }, []);
 
     return (
-        <div>
-            {albums.length > 0 && albums.map((item) => <Card album={item}/>)}
-        </div>
+        <Main>
+            <AlbumList albums={albums}/>
+        </Main>
     );
 }
-;
 
-export default Albums;
+
+export default Home;

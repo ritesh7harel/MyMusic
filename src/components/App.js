@@ -1,9 +1,9 @@
 import React from "react";
-import Albums from "./Albums/Albums";
-
+import Home from "./Home/Home";
+import "./App.css";
 
 const App = () => {
-    return <Albums/>;
+    return <Home/>;
 };
 
 export default App;
