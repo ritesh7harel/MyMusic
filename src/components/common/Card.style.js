@@ -15,6 +15,15 @@ export const CardContainer = styled.div`
 export const Image = styled.img`
     border-radius: 5px;
 `
+export const FavouriteIcon = styled.i`
+    position: relative;
+    float: right;
+    top: 6px;
+    right: 35px; 
+    font-size: 22px;
+    z-index: 1;
+    background-color: transparent;
+`
 
 export const ImageNavigator = styled.a`
     cursor: pointer;

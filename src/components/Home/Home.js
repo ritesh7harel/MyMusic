@@ -32,13 +32,17 @@ const Home = () => {
         setAlbums(filteredAlbums);
     };
 
-    const onFilter = (e) => {
-        console.log(e.target.id);
-        // const inputText = e.target.value.toLowerCase();
-        // const filteredAlbums = originalAlbums.filter((item) => {
-        //     return item["im:name"].label.toLowerCase().includes(inputText) || item["im:artist"].label.toLowerCase().includes(inputText);
-        // });
-        // setAlbums(filteredAlbums);
+    const onFilter = (startDate, endDate) => {
+        endDate = endDate || new Date();
+        const filteredAlbums = originalAlbums.filter((item) => {
+            const releaseDate = new Date(item["im:releaseDate"].label);
+            if (startDate) {
+                return releaseDate >= startDate && releaseDate <= endDate;
+            } else {
+                return true;
+            }
+        });
+        setAlbums(filteredAlbums);
     };
 
     return (
