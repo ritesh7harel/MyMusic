@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import {
     AlbumDetailsContainer,
@@ -7,12 +7,36 @@ import {
     AlbumData,
     AlbumTitle,
     AlbumArtist,
+    CheckBox,
+    FavSection,
+    Label
 } from './AlbumDetails.style';
-import {Artist, Image, Title} from "../AlbumCard/AlbumCard.style";
+import {Image} from "../AlbumCard/AlbumCard.style";
+import AppContext from "../common/state/appContext";
 
 const AlbumDetails = () => {
     const {data: album} = useLocation();
-    console.log("details", album);
+    const [isFav, setIsFav] = useState(false);
+    const [state, dispatch] = useContext(AppContext);
+
+    useEffect(() => {
+        state.favouriteAlbums.forEach((item) => {
+            if (item.id.attributes["im:id"] === album.id.attributes["im:id"]) {
+                setIsFav(true);
+            }
+        })
+    }, [])
+
+    const onMark = () => {
+        if (!isFav) {
+            dispatch({type: "UPDATE", payload: [...state.favouriteAlbums, album]});
+        } else {
+            const filtered = state.favouriteAlbums.filter((item) => item.id.attributes["im:id"] !== album.id.attributes["im:id"])
+            dispatch({type: "UPDATE", payload: filtered});
+        }
+        setIsFav(!isFav);
+    }
+
     return <AlbumDetailsContainer>
         <AlbumImage>
             <Image src={album["im:image"][2].label} alt="album image"/>
@@ -28,6 +52,10 @@ const AlbumDetails = () => {
             <AlbumData>Price: {album["im:price"].label}</AlbumData>
             <AlbumData>Release Date: {album["im:releaseDate"].attributes.label}</AlbumData>
             <AlbumData>{album["rights"].label}</AlbumData>
+            <FavSection>
+                <Label htmlFor="favourite">Mark Favourite</Label>
+                <CheckBox type="checkbox" name="favourite" id="favourite" onChange={onMark} checked={isFav}/>
+            </FavSection>
         </AlbumDescription>
     </AlbumDetailsContainer>
 };

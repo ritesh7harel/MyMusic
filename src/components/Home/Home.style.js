@@ -7,7 +7,6 @@ export const AppWrapper = styled.div`
 
 export const Main = styled.section`
   display: flex;
-  justify-content: center;
   color: ${palette.textPrimary};;
   margin: 0;
   

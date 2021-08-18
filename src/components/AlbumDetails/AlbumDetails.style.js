@@ -18,7 +18,17 @@ export const AlbumDetailsContainer = styled.div`
     margin-top: 150px;
     flex-wrap: wrap;
 `;
+
 export const AlbumImage = styled.div`
+`;
+
+export const Label = styled.label`
+    color: ${palette.textSecondary};
+`;
+
+export const FavSection = styled.div`
+    display: flex;
+    padding: 10px;
 `;
 export const AlbumDescription = styled.div`
     display: flex;
@@ -30,3 +40,10 @@ export const AlbumData = styled.div`
   padding: 10px;
   color: ${palette.textSecondary};
 `;
+
+export const CheckBox = styled.input`
+    height: 20px;
+    width: 20px;
+    margin-left: 4px;
+`;
+

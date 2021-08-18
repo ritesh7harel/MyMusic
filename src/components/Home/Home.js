@@ -5,9 +5,12 @@ import AlbumList from "../AlbumList/AlbumList";
 import {Main, Header, AppWrapper} from "./Home.style";
 import SearchBox from "../common/SearchBox";
 import Filters from "../Filters/Filters";
+import Loader from "../common/Loader";
+import {Link} from "react-router-dom";
 
 const Home = () => {
     const [albums, setAlbums] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState([]);
     const [currentFilters, setCurrentFilters] = useState(null);
     const [inputText, setInputText] = useState('');
@@ -26,11 +29,14 @@ const Home = () => {
     }
 
     const fetchAlbums = () => {
+        setLoading(true);
         API.get(GET_ALBUMS_URL).then((response) => {
             setAlbums(response.feed.entry);
             setOriginalAlbums(response.feed.entry);
+            setLoading(false);
             extractCategories(response.feed.entry);
         }).catch((err) => {
+            setLoading(false);
             console.log(err);
         });
     };
@@ -81,10 +87,11 @@ const Home = () => {
         <AppWrapper>
             <Header>
                 <SearchBox onSearch={onSearch}/>
+                <Link to="/favourites">my favourites</Link>
             </Header>
             <Main>
                 <Filters onFilter={onFilter} categories={categories}/>
-                <AlbumList albums={albums}/>
+                {loading ? <Loader/> : <AlbumList albums={albums}/>}
             </Main>
         </AppWrapper>
     );
