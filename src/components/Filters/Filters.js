@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import DatePicker from "react-date-picker";
-import {CheckBox, FilterContainer, FilterBox, Label, Text, Button} from './Filters.style';
+import {HtmlLabel, FilterContainer, FilterBox, Label, Text, Button, Select} from './Filters.style';
 
-const Filters = ({onFilter}) => {
+const Filters = ({onFilter, categories}) => {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(new Date());
+    const [selectedCategory, setSelectedCategory] = useState('none');
     const onApplyFilter = () => {
-        onFilter(startDate, endDate);
+        onFilter(startDate, endDate, selectedCategory);
     }
     return (
         <FilterContainer>
             <Text>Filters</Text>
+            <Label>Select release dates</Label>
             <FilterBox>
                 <Label>Start Date</Label>
                 <DatePicker value={startDate} onChange={(date) => setStartDate(date)}/>
@@ -19,11 +21,14 @@ const Filters = ({onFilter}) => {
                 <Label>End Date</Label>
                 <DatePicker value={endDate} onChange={(date) => setEndDate(date)}/>
             </FilterBox>
+            <HtmlLabel htmlFor="category_filter">Select Category</HtmlLabel>
+            <Select name="category_filter" id="category_filter" onChange={(e) => setSelectedCategory(e.target.value)}>
+                <option value="none">none</option>
+                {categories.map((category) =>
+                    <option value={category}>{category}</option>
+                )}
+            </Select>
             <Button onClick={onApplyFilter}>Apply</Button>
-            {/*<FilterBox>*/}
-            {/*    <Label htmlFor="checkbox2">Category</Label>*/}
-            {/*    <CheckBox type="checkbox" name="checkbox_category" id="checkbox_category" onChange={onFilter}/>*/}
-            {/*</FilterBox>*/}
         </FilterContainer>
     );
 };

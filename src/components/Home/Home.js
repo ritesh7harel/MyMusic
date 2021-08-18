@@ -8,13 +8,29 @@ import Filters from "../Filters/Filters";
 
 const Home = () => {
     const [albums, setAlbums] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [currentFilters, setCurrentFilters] = useState(null);
+    const [inputText, setInputText] = useState('');
     const [originalAlbums, setOriginalAlbums] = useState([]);
+
+    const extractCategories = (albums) => {
+        let albumCategories = [];
+        let map = {};
+        albums.forEach((item) => {
+            if (!map[item.category.attributes.label]) {
+                map[item.category.attributes.label] = 1;
+                albumCategories.push(item.category.attributes.label);
+            }
+        });
+        console.log(albumCategories);
+        setCategories(albumCategories);
+    }
 
     const fetchAlbums = () => {
         API.get(GET_ALBUMS_URL).then((response) => {
-            console.log(response);
             setAlbums(response.feed.entry);
             setOriginalAlbums(response.feed.entry);
+            extractCategories(response.feed.entry);
         }).catch((err) => {
             console.log(err);
         });
@@ -24,25 +40,42 @@ const Home = () => {
         fetchAlbums();
     }, []);
 
-    const onSearch = (e) => {
-        const inputText = e.target.value.toLowerCase();
-        const filteredAlbums = originalAlbums.filter((item) => {
+    const filterAlbums = () => {
+        let filteredAlbums = originalAlbums.filter((item) => {
             return item["im:name"].label.toLowerCase().includes(inputText) || item["im:artist"].label.toLowerCase().includes(inputText);
         });
+
+        if (currentFilters) {
+            const {startDate, endDate, selectedCategory} = currentFilters;
+            filteredAlbums = filteredAlbums.filter((item) => {
+                const releaseDate = new Date(item["im:releaseDate"].label);
+                if (startDate && selectedCategory !== 'none') {
+                    return releaseDate >= startDate && releaseDate <= endDate && selectedCategory === item.category.attributes.label;
+                } else if (startDate) {
+                    return releaseDate >= startDate && releaseDate <= endDate;
+                } else if (selectedCategory !== 'none') {
+                    return selectedCategory === item.category.attributes.label;
+                }
+                return true
+            });
+        }
+
         setAlbums(filteredAlbums);
+    }
+
+
+    useEffect(() => {
+        filterAlbums();
+    }, [inputText, currentFilters]);
+
+    const onSearch = (e) => {
+        const searchedText = e.target.value.toLowerCase();
+        setInputText(searchedText);
     };
 
-    const onFilter = (startDate, endDate) => {
+    const onFilter = (startDate, endDate, selectedCategory) => {
         endDate = endDate || new Date();
-        const filteredAlbums = originalAlbums.filter((item) => {
-            const releaseDate = new Date(item["im:releaseDate"].label);
-            if (startDate) {
-                return releaseDate >= startDate && releaseDate <= endDate;
-            } else {
-                return true;
-            }
-        });
-        setAlbums(filteredAlbums);
+        setCurrentFilters({startDate, endDate, selectedCategory});
     };
 
     return (
@@ -51,7 +84,7 @@ const Home = () => {
                 <SearchBox onSearch={onSearch}/>
             </Header>
             <Main>
-                <Filters onFilter={onFilter}/>
+                <Filters onFilter={onFilter} categories={categories}/>
                 <AlbumList albums={albums}/>
             </Main>
             <footer>
