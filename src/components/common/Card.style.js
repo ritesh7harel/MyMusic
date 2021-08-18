@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from 'react-router-dom';
 
 export const CardContainer = styled.div`
     display: flex;
@@ -14,7 +15,14 @@ export const CardContainer = styled.div`
 
 export const Image = styled.img`
     border-radius: 5px;
-`
+`;
+
+export const Icon = styled.img`
+    cursor: pointer;
+    padding: 5px;
+`;
+
+
 export const FavouriteIcon = styled.i`
     position: relative;
     float: right;
@@ -25,7 +33,7 @@ export const FavouriteIcon = styled.i`
     background-color: transparent;
 `
 
-export const ImageNavigator = styled.a`
+export const ImageNavigator = styled(Link)`
     cursor: pointer;
 `;
 

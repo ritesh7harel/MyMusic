@@ -1,12 +1,14 @@
 import React from "react";
-import {CardContainer, Image, Title, Artist, ImageNavigator, FavouriteIcon} from "./Card.style";
+import {CardContainer, Image, Title, Artist, ImageNavigator} from "./Card.style";
 
 const Card = ({album}) => {
     return (
         <>
-            {/*<FavouriteIcon className="fa fa-heart-o"></FavouriteIcon>*/}
             <CardContainer>
-                <ImageNavigator href={album.link.attributes.href}>
+                <ImageNavigator to={{
+                    pathname: `/album`,
+                    data: album,
+                }}>
                     <Image src={album["im:image"][2].label} alt="album image"/>
                 </ImageNavigator>
                 <Title className="title" href={album.id.label}>
