@@ -9,7 +9,7 @@ const AlbumCard = ({album}) => {
                     pathname: `/album`,
                     data: album,
                 }}>
-                    <Image src={album["im:image"][2].label} alt="album image"/>
+                    <Image src={album["im:image"][2].label} alt="album image" loading="lazy"/>
                 </ImageNavigator>
                 <Title className="title" href={album.id.label}>
                     {album["im:name"].label}

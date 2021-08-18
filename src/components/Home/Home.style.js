@@ -11,6 +11,7 @@ export const Main = styled.section`
   margin: 0;
   
   @media (max-width: 420px) {
+       justify-content: center;
        flex-wrap: wrap;
     }
 `;
