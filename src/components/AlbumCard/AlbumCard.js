@@ -1,7 +1,7 @@
 import React from "react";
-import {CardContainer, Image, Title, Artist, ImageNavigator} from "./Card.style";
+import {CardContainer, Image, Title, Artist, ImageNavigator} from "./AlbumCard.style";
 
-const Card = ({album}) => {
+const AlbumCard = ({album}) => {
     return (
         <>
             <CardContainer>
@@ -23,4 +23,4 @@ const Card = ({album}) => {
     );
 };
 
-export default Card;
+export default AlbumCard;

@@ -13,11 +13,11 @@ import "./App.css";
 const App = () => {
     return <Router history={history}>
         <Switch>
-            <Route exact path="/album">
-                <AlbumDetails/>
-            </Route>
             <Route exact path="/">
                 <Home/>
+            </Route>
+            <Route exact path="/album">
+                <AlbumDetails/>
             </Route>
             <Route render={() => <Redirect to="/"/>}/>
         </Switch>

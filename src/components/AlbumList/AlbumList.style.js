@@ -5,6 +5,7 @@ export const Albums = styled.ul`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  padding-left: 0;
 `;
 
 export const AlbumsListItem = styled.li`

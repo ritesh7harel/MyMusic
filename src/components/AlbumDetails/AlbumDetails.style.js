@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import {Artist, Image, Title} from "../common/Card.style";
-
+import {Artist, Title} from "../AlbumCard/AlbumCard.style";
+import palette from "../../util/colorPalette";
 
 export const AlbumTitle = styled(Title)`
     font-size: 22px;
@@ -16,6 +16,7 @@ export const AlbumDetailsContainer = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 150px;
+    flex-wrap: wrap;
 `;
 export const AlbumImage = styled.div`
 `;
@@ -27,5 +28,5 @@ export const AlbumDescription = styled.div`
 
 export const AlbumData = styled.div`
   padding: 10px;
-  color: #999999;
+  color: ${palette.textSecondary};
 `;

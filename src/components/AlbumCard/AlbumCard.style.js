@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {Link} from 'react-router-dom';
+import palette from "../../util/colorPalette";
 
 export const CardContainer = styled.div`
     display: flex;
@@ -17,22 +18,6 @@ export const Image = styled.img`
     border-radius: 5px;
 `;
 
-export const Icon = styled.img`
-    cursor: pointer;
-    padding: 5px;
-`;
-
-
-export const FavouriteIcon = styled.i`
-    position: relative;
-    float: right;
-    top: 6px;
-    right: 35px; 
-    font-size: 22px;
-    z-index: 1;
-    background-color: transparent;
-`
-
 export const ImageNavigator = styled(Link)`
     cursor: pointer;
 `;
@@ -40,10 +25,10 @@ export const ImageNavigator = styled(Link)`
 export const Title = styled.a`
     cursor: pointer;
     padding: 5px 0;
-    color: white;
+    color: ${palette.textPrimary};
     text-decoration: none;
     :visited, :hover, :active {
-      color: white;
+      color: ${palette.textPrimary};
     }
     
     :hover{
@@ -53,10 +38,10 @@ export const Title = styled.a`
 
 export const Artist = styled.a`
     cursor: pointer;
-    color: #999999;
+    color: ${palette.textSecondary};
     text-decoration: none;
     :visited, :hover, :active {
-      color: #999999;
+      color: ${palette.textSecondary};
     }
     
     :hover{

@@ -8,7 +8,7 @@ import {
     AlbumTitle,
     AlbumArtist,
 } from './AlbumDetails.style';
-import {Artist, Image, Title} from "../common/Card.style";
+import {Artist, Image, Title} from "../AlbumCard/AlbumCard.style";
 
 const AlbumDetails = () => {
     const {data: album} = useLocation();

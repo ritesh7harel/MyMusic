@@ -12,7 +12,7 @@ const Filters = ({onFilter, categories}) => {
     return (
         <FilterContainer>
             <Text>Filters</Text>
-            <Label>Select release dates</Label>
+            <Label>Select Release Date Range</Label>
             <FilterBox>
                 <Label>Start Date</Label>
                 <DatePicker value={startDate} onChange={(date) => setStartDate(date)}/>

@@ -22,7 +22,6 @@ const Home = () => {
                 albumCategories.push(item.category.attributes.label);
             }
         });
-        console.log(albumCategories);
         setCategories(albumCategories);
     }
 
@@ -87,9 +86,6 @@ const Home = () => {
                 <Filters onFilter={onFilter} categories={categories}/>
                 <AlbumList albums={albums}/>
             </Main>
-            <footer>
-
-            </footer>
         </AppWrapper>
     );
 }
