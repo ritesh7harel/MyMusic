@@ -75,7 +75,6 @@ const Home = () => {
     }, [inputText, currentFilters?.startDate, currentFilters?.endDate, currentFilters?.selectedCategory]);
 
     const onSearch = (e) => {
-        console.log(e);
         const searchedText = e.target.value.toLowerCase();
         setInputText(searchedText);
     };
