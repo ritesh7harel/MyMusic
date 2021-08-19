@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from "react";
+import React, {useEffect, useState, useCallback, useMemo} from "react";
 import API from "../../util/api";
 import {GET_ALBUMS_URL} from '../../util/constants';
 import AlbumList from "../AlbumList/AlbumList";
@@ -72,7 +72,7 @@ const Home = () => {
 
     useEffect(() => {
         filterAlbums();
-    }, [inputText, currentFilters]);
+    }, [inputText, currentFilters?.startDate, currentFilters?.endDate, currentFilters?.selectedCategory]);
 
     const onSearch = (e) => {
         console.log(e);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import {CardContainer, Image, Title, Artist, ImageNavigator} from "./AlbumCard.style";
 
 const AlbumCard = ({album}) => {
@@ -23,4 +23,4 @@ const AlbumCard = ({album}) => {
     );
 };
 
-export default AlbumCard;
+export default memo(AlbumCard);
