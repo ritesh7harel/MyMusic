@@ -8,7 +8,7 @@ const Filters = ({onFilter, categories}) => {
     const [selectedCategory, setSelectedCategory] = useState('none');
     const onApplyFilter = () => {
         onFilter(startDate, endDate, selectedCategory);
-    }
+    };
     return (
         <FilterContainer>
             <Text>Filters</Text>
@@ -23,9 +23,9 @@ const Filters = ({onFilter, categories}) => {
             </FilterBox>
             <HtmlLabel htmlFor="category_filter">Select Category</HtmlLabel>
             <Select name="category_filter" id="category_filter" onChange={(e) => setSelectedCategory(e.target.value)}>
-                <option value="none">none</option>
+                <option value="none" key="none">none</option>
                 {categories.map((category) =>
-                    <option value={category}>{category}</option>
+                    <option value={category} key={category}>{category}</option>
                 )}
             </Select>
             <Button onClick={onApplyFilter}>Apply</Button>

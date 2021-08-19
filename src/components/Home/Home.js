@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useCallback} from "react";
 import API from "../../util/api";
 import {GET_ALBUMS_URL} from '../../util/constants';
 import AlbumList from "../AlbumList/AlbumList";
@@ -7,6 +7,7 @@ import SearchBox from "../common/SearchBox";
 import Filters from "../Filters/Filters";
 import Loader from "../common/Loader";
 import {Link} from "react-router-dom";
+import debounce from "../../util/debounce";
 
 const Home = () => {
     const [albums, setAlbums] = useState([]);
@@ -74,9 +75,12 @@ const Home = () => {
     }, [inputText, currentFilters]);
 
     const onSearch = (e) => {
+        console.log(e);
         const searchedText = e.target.value.toLowerCase();
         setInputText(searchedText);
     };
+
+    const onSearchDebounce = useCallback(debounce(onSearch, 300), []);
 
     const onFilter = (startDate, endDate, selectedCategory) => {
         endDate = endDate || new Date();
@@ -86,8 +90,8 @@ const Home = () => {
     return (
         <AppWrapper>
             <Header>
-                <SearchBox onSearch={onSearch}/>
-                <Link to="/favourites">my favourites</Link>
+                <SearchBox onSearch={onSearchDebounce}/>
+                <Link to="/favourites">My Favourites</Link>
             </Header>
             <Main>
                 <Filters onFilter={onFilter} categories={categories}/>

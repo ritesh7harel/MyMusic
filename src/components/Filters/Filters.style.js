@@ -9,6 +9,7 @@ export const FilterContainer = styled.div`
 
 export const FilterBox = styled.div`
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     margin: 10px 10px 0;
 `;
