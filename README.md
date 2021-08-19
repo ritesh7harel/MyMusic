@@ -1,8 +1,10 @@
-#MyMusic
+# MyMusic
 
-#DEMO
+# DEMO
+
 https://ritesh7harel.github.io/MyMusic/
 
-#To Run locally
+# To Run locally
+
 1. npm install
 2. npm start
