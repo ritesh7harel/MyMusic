@@ -5,10 +5,22 @@ module.exports = {
     entry: path.join(__dirname, "src", "index.js"),
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
+        chunkFilename: '[name].chunk.js'
     },
     resolve: {
         modules: [path.join(__dirname, 'src'), 'node_modules'],
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                },
+            },
+        },
     },
     module: {
         rules: [
