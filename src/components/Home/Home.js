@@ -81,10 +81,10 @@ const Home = () => {
 
     const onSearchDebounce = useCallback(debounce(onSearch, 300), []);
 
-    const onFilter = (startDate, endDate, selectedCategory) => {
+    const onFilter = useCallback((startDate, endDate, selectedCategory) => {
         endDate = endDate || new Date();
         setCurrentFilters({startDate, endDate, selectedCategory});
-    };
+    }, []);
 
     return (
         <AppWrapper>
