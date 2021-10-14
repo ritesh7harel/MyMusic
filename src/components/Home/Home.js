@@ -69,7 +69,7 @@ const Home = () => {
         setAlbums(filteredAlbums);
     }
 
-
+    console.log(navigator.connection)
     useEffect(() => {
         filterAlbums();
     }, [inputText, currentFilters?.startDate, currentFilters?.endDate, currentFilters?.selectedCategory]);
